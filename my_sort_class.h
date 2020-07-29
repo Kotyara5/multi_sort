@@ -5,8 +5,8 @@
 template <class T, int mt = 1>
 class Sort {
 private:
-	int max_threads{ mt / 2 }; //Максимальное количество потоков (Счётчик считает пары открытых потоков) 
-	int act_threads{ 0 }; //Количество активных потоков
+	int max_threads{ mt / 2 }; //РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕС‚РѕРєРѕРІ (РЎС‡С‘С‚С‡РёРє СЃС‡РёС‚Р°РµС‚ РїР°СЂС‹ РѕС‚РєСЂС‹С‚С‹С… РїРѕС‚РѕРєРѕРІ) 
+	int act_threads{ 0 }; //РљРѕР»РёС‡РµСЃС‚РІРѕ Р°РєС‚РёРІРЅС‹С… РїРѕС‚РѕРєРѕРІ
 public:
 	void setMaxThreads(int mt) {
 		max_threads = mt;
@@ -18,11 +18,11 @@ private:
 	void quicksort(T arr[], int low, int high) {
 		if (low < high) {
 			int p = partition(arr, low, high);
-			if (act_threads >= max_threads) { //Если нет свободных потоков, то выполнить обе сортировки в данном
+			if (act_threads >= max_threads) { //Р•СЃР»Рё РЅРµС‚ СЃРІРѕР±РѕРґРЅС‹С… РїРѕС‚РѕРєРѕРІ, С‚Рѕ РІС‹РїРѕР»РЅРёС‚СЊ РѕР±Рµ СЃРѕСЂС‚РёСЂРѕРІРєРё РІ РґР°РЅРЅРѕРј
 				quicksort(arr, low, p);
 				quicksort(arr, p + 1, high);
 			}
-			else //Иначе запустить сортировку в разных потоках 
+			else //РРЅР°С‡Рµ Р·Р°РїСѓСЃС‚РёС‚СЊ СЃРѕСЂС‚РёСЂРѕРІРєСѓ РІ СЂР°Р·РЅС‹С… РїРѕС‚РѕРєР°С… 
 			{
 				++act_threads;
 				std::thread lt(&Sort::quicksort, this, arr, low, p);
