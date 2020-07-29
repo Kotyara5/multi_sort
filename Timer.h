@@ -1,7 +1,7 @@
 #pragma once
 #include <chrono>
 
-//Данный таймер полностью взят с сайта https://www.learncpp.com/ 
+//Р”Р°РЅРЅС‹Р№ С‚Р°Р№РјРµСЂ РїРѕР»РЅРѕСЃС‚СЊСЋ РІР·СЏС‚ СЃ СЃР°Р№С‚Р° https://www.learncpp.com/ 
 
 class Timer
 {
